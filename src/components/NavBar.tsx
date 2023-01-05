@@ -22,7 +22,7 @@ const NavBar = () => {
         })}
       </ul>
 
-      <div className="sm:hidden flex flex-1 justify-end items-center">
+      <div className="z-10 sm:hidden flex flex-1 justify-end items-center">
         <img
           src={toggle ? close : menu}
           alt="menu"
