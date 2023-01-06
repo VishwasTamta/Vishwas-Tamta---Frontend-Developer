@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { RocketData } from "../App";
 
-const ContentList = () => {
-  const [rockets, setrockets] = useState([] as any);
+const ContentList = ({
+  rockets,
+  setrockets,
+}: {
+  rockets: RocketData[];
+  setrockets: React.Dispatch<React.SetStateAction<RocketData[]>>;
+}) => {
   useEffect(() => {
     fetch("https://api.spacexdata.com/v4/rockets")
       .then((data) => data.json())
