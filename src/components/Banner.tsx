@@ -44,7 +44,7 @@ const Banner = () => {
         </div>
         <div className=" overflow-hidden max-w[500px]">
           <div
-            className={`sm:w-[500px] whitespace-nowrap transition ease-in duration-1000`}
+            className={`sm:w-[700px] whitespace-nowrap transition ease-in duration-1000`}
             style={{ transform: `translate3d(${-index * 100}%,0,0)` }}
           >
             {banners.map((banner, index) => (
