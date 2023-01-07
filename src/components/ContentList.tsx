@@ -40,9 +40,12 @@ const ContentList = ({
   return (
     <div>
       {rockets.map((rocket: any) => (
-        <div key={rocket.id} className="flex flex-wrap max-sm:justify-center">
+        <div
+          key={rocket.id}
+          className="flex flex-wrap max-sm:justify-center max-md:flex max-md:justify-center"
+        >
           {rocket.flickr_images.map((img: any, idx: number) => (
-            <div key={idx} className="mr-[10px] mt-[10px]">
+            <div key={idx} className="mr-[10px] mt-[10px] ">
               <img
                 className="cursor-pointer rounded border w-[300px] h-[300px]"
                 src={img}
