@@ -30,13 +30,11 @@ const ContentList = ({
           indexOfFirstRecord,
           indexOfLastRecord
         );
-        console.log(currentRecords, "currentRecords");
         setrockets(currentRecords);
       });
     return () => {};
   }, []);
 
-  console.log(rockets, "akjsdjkasld");
   return (
     <div>
       {rockets.map((rocket: any) => (
