@@ -12,7 +12,6 @@ const Banner = () => {
   };
 
   useEffect(() => {
-    console.log("asdasd");
     fetch("https://api.spacexdata.com/v4/rockets/?id=5e9d0d95eda69974db09d1ed")
       .then((val) => val.json())
       .then((val) => setbanners(val[1].flickr_images));
