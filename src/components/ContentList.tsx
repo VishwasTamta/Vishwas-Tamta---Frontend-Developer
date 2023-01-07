@@ -35,6 +35,8 @@ const ContentList = ({
     return () => {};
   }, []);
 
+  console.log(rockets, "akjsbd");
+
   return (
     <div>
       {rockets.map((rocket: any) => (
@@ -42,9 +44,16 @@ const ContentList = ({
           {rocket.flickr_images.map((img: any, idx: number) => (
             <div key={idx} className="mr-[10px] mt-[10px]">
               <img
-                className=" rounded border w-[300px] h-[300px]"
+                className="cursor-pointer rounded border w-[300px] h-[300px]"
                 src={img}
                 alt={"image"}
+                onClick={() =>
+                  window.open(
+                    rocket.wikipedia,
+                    "_blank",
+                    "noopener, noreferrer"
+                  )
+                }
               />
               <h3 className="text-xl font-poppins text-white text-center">
                 {rocket.name}
