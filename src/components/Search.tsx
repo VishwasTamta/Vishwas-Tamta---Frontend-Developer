@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { RocketData } from "../App";
 interface SearchInterface {
   type: string;
-  active: boolean;
+  active: string;
   originalLaunch: string;
 }
 
@@ -15,7 +15,7 @@ const Search = ({
 }) => {
   const [searchValues, setSearchValues] = useState({
     type: "Rockets",
-    active: true,
+    active: "",
     originalLaunch: "",
   } as SearchInterface);
 
@@ -24,30 +24,49 @@ const Search = ({
       const response = await fetch("https://api.spacexdata.com/v4/rockets", {});
       const data = await response.json();
 
-      const newRockets = data.filter((rocket: any) => {
-        if (
-          rocket.active === searchValues.active ||
-          rocket.first_flight === searchValues.originalLaunch
-        ) {
-          return rocket;
-        }
-      });
+      let newRockets;
+
+      if (searchValues.active === "") {
+        newRockets = await data;
+      } else if (searchValues.active === "true") {
+        newRockets = await data.filter((rocket: any) => rocket.active === true);
+      } else {
+        newRockets = await data.filter(
+          (rocket: any) => rocket.active === false
+        );
+      }
+
+      if (!!searchValues.originalLaunch) {
+        newRockets = await newRockets.filter(
+          (rocket: any) => rocket.first_flight === searchValues.originalLaunch
+        );
+      }
+
       setrockets(newRockets);
     } else {
       const response = await fetch("https://api.spacexdata.com/v4/dragons", {});
       const dragons = await response.json();
-      const newDragons = dragons.filter((dragon: any) => {
-        if (
-          dragon.active === searchValues.active ||
-          dragon.first_flight === searchValues.originalLaunch
-        ) {
-          return dragon;
-        }
-      });
+      let newDragons;
+      if (searchValues.active === "") {
+        newDragons = await dragons;
+      } else if (searchValues.active === "true") {
+        newDragons = await dragons.filter(
+          (dragon: any) => dragon.active === true
+        );
+      } else {
+        newDragons = await dragons.filter(
+          (dragon: any) => dragon.active === false
+        );
+      }
+
+      if (!!searchValues.originalLaunch) {
+        newDragons = await dragons.filter(
+          (dragon: any) => dragon.first_flight === searchValues.originalLaunch
+        );
+      }
       setrockets(newDragons);
     }
   }
-
   return (
     <div className="max-md:flex flex-col items-center">
       <div>
@@ -71,14 +90,15 @@ const Search = ({
           onChange={(e) =>
             setSearchValues({
               ...searchValues,
-              active: !!e.target.value,
+              active: e.target.value,
             })
           }
           placeholder="Active"
           className="mt-5 p-1 sm:ml-2 font-poppins rounded text-xl w-[190px]"
         >
+          <option value={""}>All</option>
           <option value={"true"}>True</option>
-          <option value={""}>False</option>
+          <option value={"false"}>False</option>
         </select>
       </div>
       <div className="items-center max-sm:flex flex-col">

@@ -34,12 +34,13 @@ const Banner = () => {
       <hr className="mt-[10px] mb-[10px]" />
       <div className="w-full sm:flex justify-center ">
         <div className="font-poppins text-white mr-20 sm:pt-[100px] mb-[10px]">
-          <h2 className="text-3xl">Powerful Tagline for Your Product</h2>
+          <h2 className="text-3xl">Space Exploration Technologies Corp</h2>
           <h3
             className="text-base
           "
           >
-            Supporting statement for your product's primary tagline.
+            SpaceX designs, manufactures and launches advanced rockets and
+            spacecraft.
           </h3>
         </div>
         <div className=" overflow-hidden max-w[500px]">
